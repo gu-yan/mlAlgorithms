@@ -1,13 +1,18 @@
 #!/usr/bin/python
 # -*-coding:utf-8 -*-
 
+
+'''
+This is realization of logistics regression with pure Python.
+'''
+
 import random
 from math import exp
 
 import data_tool
 
 
-#y = x1*a1 + x2*a2 + x3*a3 + ... + xn*an + b
+#f(x) = x1*a1 + x2*a2 + x3*a3 + ... + xn*an + b
 def predict(data,
             coef,
             bias):
@@ -18,6 +23,7 @@ def predict(data,
 
 def sigmoid(x):
     res = 0.0
+    #condition as the prediction from predict may be over the range of exp()
     try :
         if x > 60:
             res = 1.0 / (1.0 + exp(-60))
@@ -46,6 +52,7 @@ def sgd(train,
     return coef, bias
 
 #generate standard normal distribution
+#TODO the function random.gauss() can not generate stable distribution which causes diffusion gradient
 def param_gauss(size):
     param = []
     for i in range(size):
@@ -72,7 +79,8 @@ def accuracy(pred, y_true):
 
 
 
-#test
+
+#data
 features_train, labels_train, features_test, labels_test = data_tool.train_test_split(
     data_tool.load_data(),
     test_rate=0.3)
