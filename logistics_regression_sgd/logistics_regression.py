@@ -1,9 +1,11 @@
 #!/usr/bin/python
 # -*-coding:utf-8 -*-
 
-from math import exp
 import random
+from math import exp
+
 import data_tool
+
 
 #y = x1*a1 + x2*a2 + x3*a3 + ... + xn*an + b
 def predict(data,
