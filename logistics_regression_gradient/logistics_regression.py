@@ -35,7 +35,7 @@ def sigmoid(x):
         print 'over math.exp range ', x
     return res
 
-def sgd(train,
+def gradient(train,
         labels,
         coef,
         bias,
@@ -64,7 +64,7 @@ def logistic_regression(features_train, labels_train,
                         learn_rate, nepoch):
     coef = param_gauss(len(features_train[0]))
     bias = param_gauss(1)[0]
-    coef, bias = sgd(features_train, labels_train, coef, bias, learn_rate, nepoch)
+    coef, bias = gradient(features_train, labels_train, coef, bias, learn_rate, nepoch)
     pred = []
     for index in range(len(features_test)):
         pred.append(predict(features_test[index], coef, bias=bias))
