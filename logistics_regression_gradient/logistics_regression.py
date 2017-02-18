@@ -8,7 +8,9 @@ This is realization of logistics regression with pure Python.
 
 import random
 from math import exp
+import sys
 
+sys.path.append('../tools')
 import data_tool
 
 
