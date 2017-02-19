@@ -52,8 +52,18 @@ def property_entropy(sub_data):
 def info_gain(property_entropy, target_entropy):
     return target_entropy - property_entropy
 
-def train(data, max_depth):
-    properties_sorted = []
+def train(data, labels, max_depth):
+    if len(data[0]) < max_depth:
+        raise Exception('invalid depth')
+    labels_entropy = target_entropy(labels)
+    property_data = {}
+    for row_index in range(len(data)):
+        for column_index in range(len(data[row_index])):
+            if not property_data.__contains__(column_index):
+                property_data[column_index] = []
+            temp_item = [data[row_index][column_index], labels[row_index]]
+            property_data[column_index].append(temp_item)
+    print 1
 
 def predict(data):
     pred = []
@@ -67,9 +77,11 @@ sub_data.append(['s', '1'])
 sub_data.append(['l', '1'])
 sub_data.append(['m', '1'])
 sub_data.append(['l', '1'])
-sub_data.append(['m', '1'])
 sub_data.append(['m', '0'])
-sub_data.append(['l', '1'])
-sub_data.append(['m', '1'])
-sub_data.append(['s', '0'])
-info_gain(sub_data)
+sub_data.append(['m', '0'])
+sub_data.append(['l', '0'])
+sub_data.append(['m', '0'])
+sub_data.append(['s', '1'])
+labels=['0', '1', '1', '1', '1', '1', '0', '1', '1', '0']
+# info_gain(sub_data)
+train(sub_data, labels, 2)
