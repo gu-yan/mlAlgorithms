@@ -221,7 +221,7 @@ def main():
     features_train, labels_train, features_test, labels_test = dataset.load_cifar10(DATASET_PATH,
                                                                                     one_hot=True,
                                                                                     num_classes=NUMBER_CLASSES,
-                                                                                    test_rate=0.0016)
+                                                                                    test_rate=0.3)
     train_act(features_train.reshape([-1, IMAGE_WIDTH, IMAGE_HEIGHT, IMAGE_CHANNELS]), labels_train,
               features_test.reshape([-1, IMAGE_WIDTH, IMAGE_HEIGHT, IMAGE_CHANNELS]), labels_test)
 
