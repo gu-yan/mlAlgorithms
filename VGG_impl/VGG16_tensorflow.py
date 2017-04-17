@@ -2,7 +2,7 @@
 # -*- coding:utf-8 -*-
 
 import tensorflow as tf
-import visualize
+from tools import visualize
 
 
 NUMBER_CLASSES = 10

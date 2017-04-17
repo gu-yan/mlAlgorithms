@@ -11,7 +11,7 @@ from math import exp
 import sys
 
 sys.path.append('../tools')
-import data_tool
+from tools import data_tool
 
 
 #f(x) = x1*a1 + x2*a2 + x3*a3 + ... + xn*an + b
