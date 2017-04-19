@@ -76,9 +76,9 @@ def model(input, model_param):
 
     fc1 = fullconnection(data=pool5, weights=model_param['fc1_weights'], biases=model_param['fc1_biases'], relu_bias=model_param['fc1_relu_biases'], name=model_param['fc1_name'], relu=model_param['fc1_relu'])
     fc2 = fullconnection(data=fc1, weights=model_param['fc2_weights'], biases=model_param['fc2_biases'], relu_bias=model_param['fc2_relu_biases'], name=model_param['fc2_name'], relu=model_param['fc2_relu'])
-    fc3 = fullconnection(data=fc2, weights=model_param['fc3_weights'], biases=model_param['fc3_biases'], relu_bias=model_param['fc3_relu_biases'], name=model_param['fc3_name'])
-    drop = tf.nn.dropout(fc3, keep_prob=KEEP_PROB)
-    return drop
+    drop = tf.nn.dropout(fc2, keep_prob=KEEP_PROB)
+    fc3 = fullconnection(data=drop, weights=model_param['fc3_weights'], biases=model_param['fc3_biases'], relu_bias=model_param['fc3_relu_biases'], name=model_param['fc3_name'])
+    return fc3
 
 
 def init_param():
