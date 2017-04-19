@@ -14,6 +14,7 @@ LEARNING_RATE = 0.001
 MOMENTUM = 0.9
 batch_size = 128
 epoches = 5
+KEEP_PROB = 0.6
 LOG_DIR = 'Log--' + visualize.get_time()
 
 
@@ -76,7 +77,8 @@ def model(input, model_param):
     fc1 = fullconnection(data=pool5, weights=model_param['fc1_weights'], biases=model_param['fc1_biases'], relu_bias=model_param['fc1_relu_biases'], name=model_param['fc1_name'], relu=model_param['fc1_relu'])
     fc2 = fullconnection(data=fc1, weights=model_param['fc2_weights'], biases=model_param['fc2_biases'], relu_bias=model_param['fc2_relu_biases'], name=model_param['fc2_name'], relu=model_param['fc2_relu'])
     fc3 = fullconnection(data=fc2, weights=model_param['fc3_weights'], biases=model_param['fc3_biases'], relu_bias=model_param['fc3_relu_biases'], name=model_param['fc3_name'])
-    return fc3
+    drop = tf.nn.dropout(fc3, keep_prob=KEEP_PROB)
+    return drop
 
 
 def init_param():
