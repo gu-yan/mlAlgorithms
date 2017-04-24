@@ -24,7 +24,8 @@ def convolution(data, kernel, strides, name, bias, padding='SAME'):
         with tf.name_scope(name+'_relu'):
             conv = tf.nn.bias_add(conv, bias)
             relu = tf.nn.relu(conv, name=name+'_relu')
-            return relu
+        return relu
+    return conv
 
 
 def pooling(data, ksize, strides, name, padding='SAME'):
