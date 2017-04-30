@@ -19,7 +19,7 @@ tf.app.flags.DEFINE_integer('batch_size', 12, 'batch size')
 tf.app.flags.DEFINE_integer('epoches', 1, 'epoches')
 tf.app.flags.DEFINE_float('LEARNING_RATE', 0.1, 'learning rate for momentum GD')
 tf.app.flags.DEFINE_float('MOMENTUM', 0.9, 'momentum rate for momentum GD')
-tf.app.flags.DEFINE_string('data_path', 'cifar10pythonver', 'path of dataset')
+tf.app.flags.DEFINE_string('data_path', 'cifar10-pythonver', 'path of dataset')
 tf.app.flags.DEFINE_string('LOG_DIR', 'Log--' + visualize.get_time(), 'tensorboard log dir')
 
 
