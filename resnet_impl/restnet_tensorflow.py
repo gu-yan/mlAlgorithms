@@ -1,11 +1,11 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
 
+import six
 import tensorflow as tf
 from tensorflow.python.training import moving_averages
-import six
-from tools import visualize
 
+from tools import visualize, dataset
 
 FLAGS = tf.app.flags.FLAGS
 tf.app.flags.DEFINE_boolean('train_mode', True, 'True--train, False--eval')
@@ -208,13 +208,11 @@ def train_act(features_train, labels_train, features_test, labels_test):
 
 
 def main():
-    import dataset
-    features_train, labels_train, features_test, labels_test = dataset.load_cifar10(
-        FLAGS.data_path, one_hot=True, num_classes=FLAGS.cls, test_rate=0.3)
-    train_act(features_train.reshape([-1, FLAGS.IMG_WIDTH, FLAGS.IMG_HEIGHT, FLAGS.IMG_CHANNEL]),
-              labels_train,
-              features_test.reshape([-1, FLAGS.IMG_WIDTH, FLAGS.IMG_HEIGHT, FLAGS.IMG_CHANNEL]),
-              labels_test)
+    features_train, labels_train, features_test, labels_test = dataset.load_cifar10(FLAGS.data_path,
+                                                                                    width=FLAGS.IMG_WIDTH,
+                                                                                    height=FLAGS.IMG_HEIGHT,
+                                                                                    one_hot=True)
+    train_act(features_train, labels_train, features_test, labels_test)
 
 
 if __name__ == '__main__':

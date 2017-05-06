@@ -5,9 +5,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 
-# take an array of shape (n, height, width) or (n, height, width, channels)
-# and visualize each (height, width) thing in a grid of size approx. sqrt(n) by sqrt(n)
+
 def vis_square(data, padsize=1, padval=0):
+    """take an array of shape (n, height, width) or (n, height, width, channels)
+        and visualize each (height, width) thing in a grid of size approx. sqrt(n) by sqrt(n)"""
     data -= data.min()
     data /= data.max()
 

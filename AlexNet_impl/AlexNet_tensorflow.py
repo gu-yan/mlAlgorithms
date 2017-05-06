@@ -2,7 +2,8 @@
 # -*- coding:utf-8 -*-
 
 import tensorflow as tf
-from tools import visualize
+
+from tools import visualize, dataset
 
 #TODO visualize each layer
 
@@ -208,22 +209,20 @@ def train_act(features_train, labels_train, features_test, labels_test):
             data = features_train[i * batch_size: (i + 1) * batch_size, :, :, :]
             labels = labels_train[i * batch_size: (i + 1) * batch_size]
         sess.run(train, feed_dict={x: data, y: labels})
-        if i % 10 == 0:
-            summary, accuracy_res = sess.run([merge, accuracy], feed_dict={x: features_test, y: labels_test})
-            logwriter.add_summary(summary, i)
-            print(visualize.get_time() + '   train_iteration at %d, test score: %f ' % (i, accuracy_res))
+        # if i % 10 == 0:
+        summary, accuracy_res = sess.run([merge, accuracy], feed_dict={x: features_test, y: labels_test})
+        logwriter.add_summary(summary, i)
+        print(visualize.get_time() + '   train_iteration at %d, test score: %f ' % (i, accuracy_res))
     sess.close()
     logwriter.close()
 
 
 def main():
-    from tools import dataset
     features_train, labels_train, features_test, labels_test = dataset.load_cifar10(DATASET_PATH,
-                                                                                    one_hot=True,
-                                                                                    num_classes=NUMBER_CLASSES,
-                                                                                    test_rate=0.3)
-    train_act(features_train.reshape([-1, IMAGE_WIDTH, IMAGE_HEIGHT, IMAGE_CHANNELS]), labels_train,
-              features_test.reshape([-1, IMAGE_WIDTH, IMAGE_HEIGHT, IMAGE_CHANNELS]), labels_test)
+                                                                                    width=IMAGE_WIDTH,
+                                                                                    height=IMAGE_HEIGHT,
+                                                                                    one_hot=True)
+    train_act(features_train, labels_train, features_test, labels_test)
 
 
 if __name__ == '__main__':

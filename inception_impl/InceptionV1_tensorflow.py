@@ -3,9 +3,9 @@
 
 
 import tensorflow as tf
-from tools import visualize
-from inception_impl import inceptionV1_parameters
 
+from inception_impl import inceptionV1_parameters
+from tools import visualize, dataset
 
 NUMBER_CLASSES = 10
 IMAGE_WIDTH = 32
@@ -302,13 +302,11 @@ def train_act(features_train, labels_train, features_test, labels_test):
 
 
 def main():
-    from tools import dataset
     features_train, labels_train, features_test, labels_test = dataset.load_cifar10(DATASET_PATH,
-                                                                                    one_hot=True,
-                                                                                    num_classes=NUMBER_CLASSES,
-                                                                                    test_rate=0.3)
-    train_act(features_train.reshape([-1, IMAGE_WIDTH, IMAGE_HEIGHT, IMAGE_CHANNELS]), labels_train,
-              features_test.reshape([-1, IMAGE_WIDTH, IMAGE_HEIGHT, IMAGE_CHANNELS]), labels_test)
+                                                                                    width=IMAGE_WIDTH,
+                                                                                    height=IMAGE_HEIGHT,
+                                                                                    one_hot=True)
+    train_act(features_train, labels_train, features_test, labels_test)
 
 
 if __name__ == '__main__':
