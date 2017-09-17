@@ -1,6 +1,30 @@
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+'''
+Adapted from https://github.com/tornadomeet/ResNet/blob/master/symbol_resnet.py
+Original author Wei Wu
+
+Implemented the following paper:
+
+Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun. "Identity Mappings in Deep Residual Networks"
+'''
 import mxnet as mx
 import numpy as np
-
 
 def residual_unit(data, num_filter, stride, dim_match, name, bottle_neck=True, bn_mom=0.9, workspace=256, memonger=False):
     """Return ResNet Unit symbol for building ResNet
@@ -120,6 +144,10 @@ def resnet(units, num_stages, filter_list, num_classes, image_shape, bottle_neck
 
 
 def get_symbol(num_classes, num_layers, image_shape, conv_workspace=256, dtype='float32', **kwargs):
+    """
+    Adapted from https://github.com/tornadomeet/ResNet/blob/master/train_resnet.py
+    Original author Wei Wu
+    """
     (nchannel, height, width) = (image_shape[0], image_shape[1], image_shape[2])
     if height <= 28:
         num_stages = 3

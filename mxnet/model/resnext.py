@@ -1,5 +1,27 @@
-# -*- coding:utf-8 -*-
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
 
+'''
+Adapted from https://github.com/tornadomeet/ResNet/blob/master/symbol_resnet.py
+Original author Wei Wu
+
+Implemented the following paper:
+Saining Xie, Ross Girshick, Piotr Dollar, Zhuowen Tu, Kaiming He. "Aggregated Residual Transformations for Deep Neural Network"
+'''
 import mxnet as mx
 import numpy as np
 
@@ -136,6 +158,10 @@ def resnext(units, num_stages, filter_list, num_classes, num_group, image_shape,
 
 
 def get_symbol(num_classes, num_layers, image_shape, num_group=32, conv_workspace=256, dtype='float32', **kwargs):
+    """
+    Adapted from https://github.com/tornadomeet/ResNet/blob/master/train_resnet.py
+    Original author Wei Wu
+    """
     (nchannel, height, width) = (image_shape[0], image_shape[1], image_shape[2])
     if height <= 32:
         num_stages = 3
