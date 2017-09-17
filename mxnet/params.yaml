@@ -1,0 +1,19 @@
+train:
+  batchsize: 5 #number of images for per batch
+  net: resnext101 #net structure,resnext34 resnext50 resnext101 resnet34 resnet50 resnet101 resnet152
+  graphpath: trainedmodel/graph #dir for saving model graph
+  modelprefix: trainedmodel/model #dir for saving trained model
+  modelepoch: 1 #frequency of trained model save
+  trainepoch: 30 #total epoch for training
+  evalmetric: acc #
+  traindatapath: /home/workspace/DATASET/JPEGImages/traindata #dir of training data.A dir of images binary
+  testdatapath: /home//workspace/DATASET/JPEGImages/testdata #dir of test data binary
+  learningrate: 0.0002 #learning rate
+  optimizer: adam #optimizer,sg,adam
+inputshape: [3, 449, 449] #input shape,format [channel height width]
+pretrain: True #whether using trained model
+preimagnettrain: True #whether using trained model from imagenet-1000.Models from mxnet model zoom at dir imagenet/
+classes: 3 #classifications
+eval:
+  modelprefix: imagenet/resnet-101 #related to modelprefix
+  label: label.txt # label of classifications
