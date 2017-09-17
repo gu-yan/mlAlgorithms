@@ -62,6 +62,6 @@ ptrhon pack.py \
 
 
 ## Todo
-- add mxnet Rec format
-- using gluon
-- multiple gpus
+`- [ ]` add mxnet Rec format <br/>
+`- [ ]` using gluon <br/>
+`- [ ]` multiple gpus <br/>
